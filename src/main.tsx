@@ -1,12 +1,18 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SignIn from "~/pages/account/signIn";
 
-const App = () => {
-  return <div>123</div>;
-};
+const routes = [
+  {
+    children: [
+      {
+        path: "/account/sign-in",
+        element: <SignIn />,
+      },
+    ],
+  },
+];
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+  <RouterProvider router={createBrowserRouter(routes)} />
 );
