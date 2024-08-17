@@ -1,16 +1,29 @@
+import { ErrorInfo } from "react";
 import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  useRouteError,
+} from "react-router-dom";
 import SignIn from "~/pages/account/signIn";
+
+const ErrorBoundary = () => {
+  let error = useRouteError();
+  return <div>{JSON.stringify(error)}</div>;
+};
+
+const Layout = () => {
+  return <Outlet />;
+};
 
 const routes = [
   {
-    children: [
-      {
-        path: "/account/sign-in",
-        element: <SignIn />,
-      },
-    ],
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorBoundary />,
+    children: [{ path: "account/sign-in", element: <SignIn /> }],
   },
 ];
 
