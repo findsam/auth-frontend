@@ -4,6 +4,7 @@ export const endpoints = {
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080",
   auth: {
     signin: "/users/user/sign-in",
+    signup: "/users/user/sign-up",
     user: (id: string) => `/users/user/${id}`,
     refresh: "/users/user/refresh",
   },

@@ -1,11 +1,19 @@
 import { useMutation, useQuery } from "react-query";
-import { SignInInputs } from "~/libs/types";
+import { SignInRequest, SignUpRequest } from "~/libs/types";
 import { axios, endpoints } from "~/libs/endpoint";
+import { getCookie } from "~/libs/util";
 
 export function useLogin() {
   return useMutation({
-    mutationFn: async (values: SignInInputs) =>
-      await axios.post<any>(endpoints.auth.signin, values),
+    mutationFn: async (values: SignInRequest) =>
+      await axios.post<SignInRequest>(endpoints.auth.signin, values),
+  });
+}
+
+export function useSignUp() {
+  return useMutation({
+    mutationFn: async (values: SignUpRequest) =>
+      await axios.post<SignUpRequest>(endpoints.auth.signup, values),
   });
 }
 
@@ -13,7 +21,11 @@ export function usePing() {
   return useQuery({
     queryKey: ["ping"],
     queryFn: async () =>
-      await axios.get<any>(endpoints.auth.user("66bff1853165b58880386aed")),
+      await axios.get<any>(endpoints.auth.user("66bff1853165b58880386aed"), {
+        headers: {
+          Authorization: getCookie("Authorization"),
+        },
+      }),
     retry: false,
     enabled: false,
     retryOnMount: false,

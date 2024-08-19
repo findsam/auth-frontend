@@ -7,6 +7,8 @@ import {
   useRouteError,
 } from "react-router-dom";
 import SignIn from "~/pages/account/signIn";
+import AuthProvider from "~/libs/authCtx";
+import SignUp from "~/pages/account/signUp";
 
 const ErrorBoundary = () => {
   let error = useRouteError();
@@ -22,13 +24,18 @@ const routes = [
     path: "/",
     element: <Layout />,
     errorElement: <ErrorBoundary />,
-    children: [{ path: "account/sign-in", element: <SignIn /> }],
+    children: [
+      { path: "account/sign-in", element: <SignIn /> },
+      { path: "account/sign-up", element: <SignUp /> },
+    ],
   },
 ];
 
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
-    <RouterProvider router={createBrowserRouter(routes)} />
+    <AuthProvider>
+      <RouterProvider router={createBrowserRouter(routes)} />
+    </AuthProvider>
   </QueryClientProvider>
 );
