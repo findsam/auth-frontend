@@ -9,3 +9,20 @@ export interface SignUpRequest {
   email: string;
   password: string;
 }
+
+export interface SignInResponse {
+  firstName: string;
+  lastName: string;
+  email: string;
+  id: string | number;
+}
+
+export interface Response<T> {
+  results: T[];
+  toastMessage?: string;
+  status: number;
+}
+
+export interface ResponseError {
+  error: string;
+}

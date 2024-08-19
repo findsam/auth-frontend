@@ -1,12 +1,34 @@
-import { useMutation, useQuery } from "react-query";
-import { SignInRequest, SignUpRequest } from "~/libs/types";
+import { useMutation, UseMutationResult, useQuery } from "react-query";
+import {
+  Response,
+  ResponseError,
+  SignInRequest,
+  SignInResponse,
+  SignUpRequest,
+} from "~/libs/types";
 import { axios, endpoints } from "~/libs/endpoint";
 import { getCookie } from "~/libs/util";
+import { AxiosError } from "axios";
 
-export function useLogin() {
-  return useMutation({
-    mutationFn: async (values: SignInRequest) =>
-      await axios.post<SignInRequest>(endpoints.auth.signin, values),
+export function useLogin(): UseMutationResult<
+  Response<SignInResponse>,
+  AxiosError<ResponseError>,
+  SignInRequest
+> {
+  return useMutation<
+    Response<SignInResponse>,
+    AxiosError<ResponseError>,
+    SignInRequest
+  >({
+    mutationFn: async (
+      values: SignInRequest
+    ): Promise<Response<SignInResponse>> => {
+      const response = await axios.post<Response<SignInResponse>>(
+        endpoints.auth.signin,
+        values
+      );
+      return response.data;
+    },
   });
 }
 

@@ -1,13 +1,14 @@
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { SignInRequest } from "~/libs/types";
-import { useLogin, usePing, useRefresh } from "~/libs/queries";
+import { useLogin } from "~/libs/queries";
 import Joi from "joi";
-import { useAuth } from "~/libs/useAuth";
 import { renderErrors } from "~/libs/util";
+import { useAuth } from "~/libs/useAuth";
 
 const SignIn: React.FC = () => {
   const loginQuery = useLogin();
+  const { setUser } = useAuth();
 
   const methods = useForm<SignInRequest>({
     resolver: joiResolver(
@@ -23,22 +24,12 @@ const SignIn: React.FC = () => {
     ),
   });
 
-  const login: SubmitHandler<SignInRequest> = async (values: SignInRequest) => {
-    await loginQuery.mutateAsync(values);
+  const login: SubmitHandler<SignInRequest> = async (values) => {
+    await loginQuery
+      .mutateAsync(values)
+      .then((data) => setUser?.(data.results[0]))
+      .catch((error) => console.error);
   };
-
-  const pingQuery = usePing();
-  const ping = async () => {
-    console.log(await pingQuery.refetch());
-  };
-
-  const refreshQuery = useRefresh();
-  const refresh = async () => {
-    console.log(await refreshQuery.refetch());
-  };
-
-  const auth = useAuth();
-  console.log(auth);
 
   return (
     <>
@@ -57,15 +48,6 @@ const SignIn: React.FC = () => {
         </form>
       </FormProvider>
       {renderErrors<SignInRequest>(methods.formState.errors)}
-      <div style={{ marginTop: "20rem" }}>
-        <button type="submit" onClick={async () => await refresh()}>
-          ping refresh
-        </button>
-
-        <button type="submit" onClick={async () => await ping()}>
-          ping self
-        </button>
-      </div>
     </>
   );
 };

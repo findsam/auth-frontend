@@ -11,6 +11,7 @@ import SignIn from "~/pages/account/signIn";
 import AuthProvider from "~/libs/authCtx";
 import SignUp from "~/pages/account/signUp";
 import Settings from "./pages/account/settings";
+import { useAuth } from "./libs/useAuth";
 
 const ErrorBoundary = () => {
   let error = useRouteError();
@@ -20,12 +21,8 @@ const ErrorBoundary = () => {
 const Layout = () => <Outlet />;
 
 const Private = () => {
-  const isAuthenticated = true;
-  return isAuthenticated ? (
-    <Outlet />
-  ) : (
-    <Navigate to="account/sign-in" replace />
-  );
+  const { isSignedIn } = useAuth();
+  return isSignedIn ? <Outlet /> : <Navigate to="account/sign-in" replace />;
 };
 
 const routes = [
