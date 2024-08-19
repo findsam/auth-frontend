@@ -18,8 +18,6 @@ const ErrorBoundary = () => {
   return <div>{JSON.stringify(error)}</div>;
 };
 
-const Layout = () => <Outlet />;
-
 const Private = () => {
   const { isSignedIn } = useAuth();
   return isSignedIn ? <Outlet /> : <Navigate to="account/sign-in" replace />;
@@ -28,7 +26,7 @@ const Private = () => {
 const routes = [
   {
     path: "/",
-    element: <Layout />,
+    element: <Outlet />,
     errorElement: <ErrorBoundary />,
     children: [
       { path: "/", element: <Navigate to="account/sign-in" replace /> },

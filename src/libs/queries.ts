@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult, useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import {
   Response,
   ResponseError,
@@ -10,11 +10,7 @@ import { axios, endpoints } from "~/libs/endpoint";
 import { getCookie } from "~/libs/util";
 import { AxiosError } from "axios";
 
-export function useLogin(): UseMutationResult<
-  Response<SignInResponse>,
-  AxiosError<ResponseError>,
-  SignInRequest
-> {
+export function useLogin() {
   return useMutation<
     Response<SignInResponse>,
     AxiosError<ResponseError>,
@@ -29,6 +25,8 @@ export function useLogin(): UseMutationResult<
       );
       return response.data;
     },
+    onError: (err) => err,
+    onSuccess: (resp) => resp,
   });
 }
 

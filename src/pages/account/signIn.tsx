@@ -25,10 +25,7 @@ const SignIn: React.FC = () => {
   });
 
   const login: SubmitHandler<SignInRequest> = async (values) => {
-    await loginQuery
-      .mutateAsync(values)
-      .then((data) => setUser?.(data.results[0]))
-      .catch((error) => console.error);
+    await loginQuery.mutateAsync(values);
   };
 
   return (
