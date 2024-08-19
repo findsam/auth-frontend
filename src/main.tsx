@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {
   createBrowserRouter,
+  Navigate,
   Outlet,
   RouterProvider,
   useRouteError,
@@ -15,9 +16,7 @@ const ErrorBoundary = () => {
   return <div>{JSON.stringify(error)}</div>;
 };
 
-const Layout = () => {
-  return <Outlet />;
-};
+const Layout = () => <Outlet />;
 
 const routes = [
   {
@@ -25,6 +24,7 @@ const routes = [
     element: <Layout />,
     errorElement: <ErrorBoundary />,
     children: [
+      { path: "/", element: <Navigate to="account/sign-in" replace /> },
       { path: "account/sign-in", element: <SignIn /> },
       { path: "account/sign-up", element: <SignUp /> },
     ],

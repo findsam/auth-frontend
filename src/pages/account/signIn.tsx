@@ -4,6 +4,7 @@ import { SignInRequest } from "~/libs/types";
 import { useLogin, usePing, useRefresh } from "~/libs/queries";
 import Joi from "joi";
 import { useAuth } from "~/libs/useAuth";
+import { renderErrors } from "~/libs/util";
 
 const SignIn: React.FC = () => {
   const loginQuery = useLogin();
@@ -55,6 +56,7 @@ const SignIn: React.FC = () => {
           </button>
         </form>
       </FormProvider>
+      {renderErrors<SignInRequest>(methods.formState.errors)}
       <div style={{ marginTop: "20rem" }}>
         <button type="submit" onClick={async () => await refresh()}>
           ping refresh

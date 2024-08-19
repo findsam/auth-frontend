@@ -16,9 +16,7 @@ const renderErrors = <T extends FieldValues>(items: FieldErrors<T>) => {
   let errors = [];
   for (const key in items) {
     const error = items[key];
-    if (error) {
-      errors.push(error.message?.toString());
-    }
+    if (error) errors.push(error.message?.toString());
   }
   return (
     <ul>
