@@ -10,6 +10,7 @@ import {
 import SignIn from "~/pages/account/signIn";
 import AuthProvider from "~/libs/authCtx";
 import SignUp from "~/pages/account/signUp";
+import Settings from "./pages/account/settings";
 
 const ErrorBoundary = () => {
   let error = useRouteError();
@@ -17,6 +18,15 @@ const ErrorBoundary = () => {
 };
 
 const Layout = () => <Outlet />;
+
+const Private = () => {
+  const isAuthenticated = true;
+  return isAuthenticated ? (
+    <Outlet />
+  ) : (
+    <Navigate to="account/sign-in" replace />
+  );
+};
 
 const routes = [
   {
@@ -27,6 +37,15 @@ const routes = [
       { path: "/", element: <Navigate to="account/sign-in" replace /> },
       { path: "account/sign-in", element: <SignIn /> },
       { path: "account/sign-up", element: <SignUp /> },
+    ],
+  },
+  {
+    element: <Private />,
+    children: [
+      {
+        path: "/account/settings",
+        element: <Settings />,
+      },
     ],
   },
 ];
