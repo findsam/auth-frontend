@@ -2,8 +2,12 @@ import { useAuth } from "~/libs/useAuth";
 
 const Settings: React.FC = () => {
   const auth = useAuth();
-  console.log({ auth });
-  return <>Settings :D</>;
+  return (
+    <>
+      Welcome to the settings page,{" "}
+      {auth.user?.firstName + " " + auth.user?.lastName}
+    </>
+  );
 };
 
 export default Settings;

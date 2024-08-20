@@ -5,10 +5,12 @@ import { useLogin } from "~/libs/queries";
 import Joi from "joi";
 import { renderErrors } from "~/libs/util";
 import { useAuth } from "~/libs/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const SignIn: React.FC = () => {
-  const { error, mutateAsync } = useLogin();
-  const { setUser } = useAuth();
+  const { mutateAsync } = useLogin();
+  const { handleUser } = useAuth();
+  const navigate = useNavigate();
 
   const methods = useForm<SignInRequest>({
     resolver: joiResolver(
@@ -26,6 +28,9 @@ const SignIn: React.FC = () => {
 
   const login: SubmitHandler<SignInRequest> = async (values) => {
     const data = await mutateAsync(values);
+    if (!handleUser) return;
+    handleUser(data);
+    navigate("/account/settings");
   };
 
   return (
