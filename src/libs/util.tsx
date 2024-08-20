@@ -26,4 +26,5 @@ const renderErrors = <T extends FieldValues>(items: FieldErrors<T>) => {
     </ul>
   );
 };
+
 export { getCookie, renderErrors };

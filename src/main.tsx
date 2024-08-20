@@ -13,6 +13,7 @@ import SignUp from "~/pages/account/signUp";
 import Settings from "~/pages/account/settings";
 import { useAuth } from "~/libs/useAuth";
 import "~/libs/_.css";
+import { Toaster, toast } from "sonner";
 
 const ErrorBoundary = () => {
   let error = useRouteError();
@@ -50,6 +51,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
+      <Toaster position="bottom-left" />
       <RouterProvider router={createBrowserRouter(routes)} />
     </AuthProvider>
   </QueryClientProvider>

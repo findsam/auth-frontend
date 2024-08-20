@@ -7,7 +7,7 @@ import { renderErrors } from "~/libs/util";
 import { useAuth } from "~/libs/useAuth";
 
 const SignIn: React.FC = () => {
-  const { data, error, mutateAsync } = useLogin();
+  const { error, mutateAsync } = useLogin();
   const { setUser } = useAuth();
 
   const methods = useForm<SignInRequest>({
@@ -26,7 +26,6 @@ const SignIn: React.FC = () => {
 
   const login: SubmitHandler<SignInRequest> = async (values) => {
     const data = await mutateAsync(values);
-    setUser?.(data.results[0]);
   };
 
   return (
