@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+:root {
+  --darkest: #0f0f0f;
+  --border: #1e1e1e;
+  --input: #060606;
+  --text: #606060;
+  --light: #999999;
+  --gradient: linear-gradient(to bottom, #1c1c1c 0%, #1a1a1a 100%);
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+}
+
+body {
+  padding: 1.8rem;
+  background: var(--darkest);
+  font-size: 1.3rem;
+}
+
+input {
+  border: 1px solid var(--border);
+  background: var(--input);
+  padding: 0.7rem 0.4rem;
+  outline: none;
+  margin: 0.6rem 0 1.6rem 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 224px;
+}
+
+button {
+  font-family: inherit;
+  text-transform: uppercase;
+  outline: 0;
+  border: transparent;
+  padding: 1rem 6rem;
+  margin-top: 0.6rem;
+  border-radius: 0.4rem;
+  background: var(--gradient);
+  color: var(--light);
+}
+button:hover {
+  cursor: pointer;
+}

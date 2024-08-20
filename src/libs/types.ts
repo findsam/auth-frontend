@@ -19,7 +19,7 @@ export interface SignInResponse {
 
 export interface Response<T> {
   results: T[];
-  toastMessage?: string;
+  message?: string;
   status: number;
 }
 

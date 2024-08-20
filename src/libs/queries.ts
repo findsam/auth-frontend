@@ -19,14 +19,13 @@ export function useLogin() {
     mutationFn: async (
       values: SignInRequest
     ): Promise<Response<SignInResponse>> => {
-      const response = await axios.post<Response<SignInResponse>>(
-        endpoints.auth.signin,
-        values
-      );
-      return response.data;
+      return (
+        await axios.post<Response<SignInResponse>>(
+          endpoints.auth.signin,
+          values
+        )
+      ).data;
     },
-    onError: (err) => err,
-    onSuccess: (resp) => resp,
   });
 }
 

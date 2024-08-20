@@ -10,8 +10,9 @@ import {
 import SignIn from "~/pages/account/signIn";
 import AuthProvider from "~/libs/authCtx";
 import SignUp from "~/pages/account/signUp";
-import Settings from "./pages/account/settings";
-import { useAuth } from "./libs/useAuth";
+import Settings from "~/pages/account/settings";
+import { useAuth } from "~/libs/useAuth";
+import "~/libs/_.css";
 
 const ErrorBoundary = () => {
   let error = useRouteError();

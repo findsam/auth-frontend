@@ -7,7 +7,7 @@ import { renderErrors } from "~/libs/util";
 import { useAuth } from "~/libs/useAuth";
 
 const SignIn: React.FC = () => {
-  const loginQuery = useLogin();
+  const { data, error, mutateAsync } = useLogin();
   const { setUser } = useAuth();
 
   const methods = useForm<SignInRequest>({
@@ -25,22 +25,20 @@ const SignIn: React.FC = () => {
   });
 
   const login: SubmitHandler<SignInRequest> = async (values) => {
-    await loginQuery.mutateAsync(values);
+    const data = await mutateAsync(values);
+    setUser?.(data.results[0]);
   };
 
   return (
     <>
       <FormProvider {...methods}>
-        <form
-          style={{ display: "grid", maxWidth: "270px", gap: "6px" }}
-          onSubmit={methods.handleSubmit(login)}
-        >
-          <label>email</label>
+        <form onSubmit={methods.handleSubmit(login)}>
+          <label>Email</label>
           <input {...methods.register("email")} defaultValue="dev@dev.com" />
-          <label>password</label>
+          <label>Password</label>
           <input {...methods.register("password")} defaultValue="dev" />
           <button type="submit" style={{ maxWidth: "max-content" }}>
-            continue
+            Sign In
           </button>
         </form>
       </FormProvider>

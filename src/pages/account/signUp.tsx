@@ -38,19 +38,16 @@ const SignUp: React.FC = () => {
   return (
     <>
       <FormProvider {...methods}>
-        <form
-          style={{ display: "grid", maxWidth: "270px", gap: "6px" }}
-          onSubmit={methods.handleSubmit(signUp)}
-        >
-          <label>first name</label>
+        <form onSubmit={methods.handleSubmit(signUp)}>
+          <label>First name</label>
           <input {...methods.register("firstName")} />
 
-          <label>last name</label>
+          <label>Last name</label>
           <input {...methods.register("lastName")} />
 
-          <label>email</label>
+          <label>Email</label>
           <input {...methods.register("email")} />
-          <label>password</label>
+          <label>Password</label>
           <input {...methods.register("password")} />
           <button type="submit" style={{ maxWidth: "max-content" }}>
             continue
