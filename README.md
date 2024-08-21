@@ -12,3 +12,5 @@ auth-frontend 0 styling boilerplate
 - [React Query](https://tanstack.com/query/latest/docs/framework/react/overview)
 - [Joi](https://github.com/hapijs/joi)
 - [React Hook Form](https://react-hook-form.com/)
+
+![img](https://i.imgur.com/9dHQB7J.png)
