@@ -37,11 +37,7 @@ export function usePing() {
   return useQuery({
     queryKey: ["ping"],
     queryFn: async () =>
-      await axios.get<any>(endpoints.auth.user("66bff1853165b58880386aed"), {
-        headers: {
-          Authorization: getCookie("Authorization"),
-        },
-      }),
+      await axios.get<any>(endpoints.auth.user("66bff1853165b58880386aed")),
     retry: false,
     enabled: false,
     retryOnMount: false,

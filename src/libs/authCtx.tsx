@@ -16,7 +16,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [user, setUser] = useState<SignInResponse | null>(
     readLocalStorage("user") ?? null
   );
-  const isSignedIn = !!getCookie("Authorization");
 
   const handleUser = (data: SignInResponseWithToken) => {
     bakeLocalStorage("authorization", data.token);
@@ -25,7 +24,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ user, handleUser, isSignedIn }}>
+    <AuthContext.Provider value={{ user, handleUser, isSignedIn: !!user }}>
       {children}
     </AuthContext.Provider>
   );

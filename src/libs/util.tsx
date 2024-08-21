@@ -42,7 +42,7 @@ export const renderErrors = <T extends FieldValues>(items: FieldErrors<T>) => {
 export const isWindow = () => typeof window !== "undefined";
 
 export const getHostname = (name: string): string => {
-  const prefix = "shrouded";
+  const prefix = "app";
   return import.meta.env.NODE_ENV === "development"
     ? `${prefix}_local_${name}`
     : `${prefix}_${name}`;

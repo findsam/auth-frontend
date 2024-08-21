@@ -13,7 +13,7 @@ import SignUp from "~/pages/account/signUp";
 import Settings from "~/pages/account/settings";
 import { useAuth } from "~/libs/useAuth";
 import "~/libs/_.css";
-import { Toaster, toast } from "sonner";
+import { Toaster } from "sonner";
 
 const ErrorBoundary = () => {
   let error = useRouteError();
