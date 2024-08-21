@@ -34,20 +34,24 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="container">
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(login)}>
-          <label>Email</label>
-          <input {...methods.register("email")} defaultValue="dev@dev.com" />
-          <label>Password</label>
-          <input {...methods.register("password")} defaultValue="dev" />
+        <form onSubmit={methods.handleSubmit(login)} className="form">
+          <span className="form__row">
+            <label>Email</label>
+            <input {...methods.register("email")} defaultValue="dev@dev.com" />
+          </span>
+          <span className="form__row">
+            <label>Password</label>
+            <input {...methods.register("password")} defaultValue="dev" />
+          </span>
           <button type="submit" style={{ maxWidth: "max-content" }}>
             Sign In
           </button>
         </form>
       </FormProvider>
       {renderErrors<SignInRequest>(methods.formState.errors)}
-    </>
+    </div>
   );
 };
 

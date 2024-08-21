@@ -1,6 +1,5 @@
 import _axios, { AxiosError, AxiosResponse } from "axios";
 import { jwtDecode } from "jwt-decode";
-import { toast } from "sonner";
 import { ResponseError, Response } from "~/libs/types";
 import { bakeLocalStorage, readLocalStorage } from "~/libs/util";
 
@@ -22,12 +21,12 @@ export const axios = _axios.create({
 //Generic toast responses for success and failure instances.
 axios.interceptors.response.use(
   (response: AxiosResponse<Response<unknown>, unknown>) => {
-    toast.success(response.data.message ?? response.statusText);
+    // toast.success(response.data.message ?? response.statusText);
     return Promise.resolve(response);
   },
   (error: AxiosError<ResponseError>) => {
     if (error.response) {
-      toast.error(error.response.data.error ?? error.message);
+      // toast.error(error.response.data.error ?? error.message);
       return Promise.reject(error);
     }
   }

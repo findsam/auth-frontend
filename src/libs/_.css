@@ -1,63 +1,153 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 :root {
-  --darkest: #0f0f0f;
-  --border: #1e1e1e;
-  --input: #060606;
-  --text: #606060;
-  --light: #999999;
-  --accent: #c1b575;
-  --gradient: linear-gradient(to bottom, #1c1c1c 0%, #1a1a1a 100%);
+  --background: #fcfaff;
+  --dark: #17223f;
+  --text: #475467;
+  --accent: #724dc9;
+  --light: rgb(255, 255, 255);
+  --border: #585d6e34;
+  --placeholder: #1d284685;
+  --radius: 0.8rem;
+  --py: 0.7rem;
+  --px: 1.2rem;
 }
-* {
-  padding: 0;
-  margin: 0;
+input::placeholder {
+  font-size: 1.6rem;
+  letter-spacing: -0.05rem;
+  font-weight: 500;
+  color: var(--placeholder);
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
 html {
   font-size: 62.5%;
 }
+body,
 html,
-body {
+#root {
   height: 100%;
   width: 100%;
-  font-weight: 500;
-  font-family: "Inter", sans-serif;
-  color: var(--text);
 }
-
 body {
-  padding: 1.8rem;
-  background: var(--darkest);
-  font-size: 1.3rem;
+  letter-spacing: -0.05rem;
+  font-family: "Inter", sans-serif;
+  background: var(--background);
+  font-weight: 500;
 }
-
-input {
-  font-family: inherit;
-  color: var(--accent);
-  border: 1px solid var(--border);
-  background: var(--input);
-  padding: 0.7rem 0.4rem;
-  outline: none;
-  margin: 0.6rem 0 1.6rem 0;
+.container {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.6rem;
 }
-
-form {
+.form {
+  max-width: 372px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 224px;
+  gap: 1.3rem;
+}
+.form__row {
+  display: grid;
+}
+
+.form__submit {
+  margin-top: 2.2rem;
+}
+.form__notification {
+  font-size: 1.3rem;
+  color: var(--placeholder);
+  margin: 1.3rem auto 0 0;
+}
+.form__notification__button {
+  text-decoration: underline;
+  color: var(--dark);
+}
+.form__row__label__star {
+  color: var(--accent);
+  font-weight: 700;
+}
+label {
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: var(--dark);
+}
+input,
+button {
+  outline: transparent;
+  box-shadow: 0 1px 2px 0 rgba(64, 63, 71, 0.05);
+}
+input {
+  width: 100%;
+  outline: none;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--py) var(--px);
+  outline: 2px solid transparent;
+}
+
+input:focus {
+  outline: 2px solid var(--accent);
+  border: 1px solid transparent;
 }
 
 button {
-  font-family: inherit;
-  text-transform: uppercase;
-  outline: 0;
-  border: transparent;
-  padding: 1rem 6rem;
-  margin-top: 0.6rem;
-  border-radius: 0.4rem;
-  background: var(--gradient);
+  outline: 2px solid var(--background);
+  width: 100%;
+  border: 1px solid #030c25;
+  background: var(--dark);
+  padding: var(--py) var(--px);
   color: var(--light);
+  font-size: 1.6rem;
+  border-radius: var(--radius);
 }
 button:hover {
   cursor: pointer;
+  outline: 2px solid var(--accent);
 }

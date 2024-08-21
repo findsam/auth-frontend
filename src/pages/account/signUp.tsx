@@ -37,24 +37,56 @@ const SignUp: React.FC = () => {
 
   return (
     <>
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(signUp)}>
-          <label>First name</label>
-          <input {...methods.register("firstName")} />
-
-          <label>Last name</label>
-          <input {...methods.register("lastName")} />
-
-          <label>Email</label>
-          <input {...methods.register("email")} />
-          <label>Password</label>
-          <input {...methods.register("password")} />
-          <button type="submit" style={{ maxWidth: "max-content" }}>
-            continue
-          </button>
-        </form>
-      </FormProvider>
-      {renderErrors<SignUpRequest>(methods.formState.errors)}
+      <div className="container">
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(signUp)} className="form">
+            <span style={{ display: "flex", gap: "1.3rem" }}>
+              <span className="form__row">
+                <label className="form__row__label">
+                  First name <span className="form__row__label__star">*</span>
+                </label>
+                <input
+                  {...methods.register("firstName")}
+                  placeholder="Your name"
+                />
+              </span>
+              <span className="form__row">
+                <label>Last name</label>
+                <input
+                  placeholder="Your last name"
+                  {...methods.register("lastName")}
+                />
+              </span>
+            </span>
+            <span className="form__row">
+              <label className="form__row__label">
+                Email <span className="form__row__label__star">*</span>
+              </label>
+              <input
+                placeholder="Enter your email"
+                {...methods.register("email")}
+              />
+            </span>{" "}
+            <span className="form__row">
+              <label className="form__row__label">
+                Password <span className="form__row__label__star">*</span>
+              </label>
+              <input
+                placeholder="Create a password"
+                {...methods.register("password")}
+              />
+            </span>
+            <button className="form__submit" type="submit">
+              Sign Up{" "}
+            </button>
+            <p className="form__notification">
+              Already have an account?{" "}
+              <span className="form__notification__button">Sign In</span>
+            </p>
+          </form>
+        </FormProvider>
+        {renderErrors<SignUpRequest>(methods.formState.errors)}
+      </div>
     </>
   );
 };
