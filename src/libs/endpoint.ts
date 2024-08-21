@@ -1,6 +1,5 @@
 import _axios, { AxiosError, AxiosResponse } from "axios";
 import { jwtDecode } from "jwt-decode";
-import { useQuery } from "react-query";
 import { toast } from "sonner";
 import { ResponseError, Response } from "~/libs/types";
 import { bakeLocalStorage, readLocalStorage } from "~/libs/util";
@@ -49,7 +48,8 @@ axios.interceptors.request.use(
           return request;
         }
         if (hasExpired) {
-          // we use default axios instance here to prevent infinite loop.
+          /* we MUST use the default axios instance for this one request 
+          otherwise we can trigger and infinite loop due to interceptors. */
           const response = await _axios.get<{ token: string }>(
             endpoints.baseURL + endpoints.auth.refresh,
             {

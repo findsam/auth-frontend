@@ -8,7 +8,7 @@ import { useAuth } from "~/libs/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const SignIn: React.FC = () => {
-  const { mutateAsync } = useLogin();
+  const { mutateAsync, error } = useLogin();
   const { handleUser } = useAuth();
   const navigate = useNavigate();
 
