@@ -20,9 +20,7 @@ export const axios = _axios.create({
   withCredentials: true,
 });
 
-/**
- * Generic toast responses for success and failure instances.
- * */
+//Generic toast responses for success and failure instances.
 axios.interceptors.response.use(
   (response: AxiosResponse<Response<unknown>, unknown>) => {
     toast.success(response.data.message ?? response.statusText);
@@ -36,13 +34,12 @@ axios.interceptors.response.use(
   }
 );
 
-/**
- * Handles token refreshing on requests .
- * */
+//Handles token refreshing on requests.
 axios.interceptors.request.use(
   async (request) => {
+    request.withCredentials = true;
     let token = readLocalStorage("authorization");
-    if (typeof token === "string") {
+    if (typeof token === "string" && token) {
       const claims = jwtDecode(token);
       if (claims && claims.exp) {
         const currentTimeInSeconds = Math.floor(Date.now() / 1000);
@@ -54,7 +51,10 @@ axios.interceptors.request.use(
         if (hasExpired) {
           // we use default axios instance here to prevent infinite loop.
           const response = await _axios.get<{ token: string }>(
-            endpoints.baseURL + endpoints.auth.refresh
+            endpoints.baseURL + endpoints.auth.refresh,
+            {
+              withCredentials: true,
+            }
           );
           request.headers["Authorization"] = `Bearer ${response.data.token}`;
           bakeLocalStorage("authorization", response.data.token);

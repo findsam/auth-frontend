@@ -1,9 +1,10 @@
-import { usePing } from "~/libs/queries";
+import { usePing, useRefresh } from "~/libs/queries";
 import { useAuth } from "~/libs/useAuth";
 
 const Settings: React.FC = () => {
   const auth = useAuth();
   const pingQuery = usePing();
+  const refreshQuery = useRefresh();
 
   return (
     <>
@@ -13,6 +14,10 @@ const Settings: React.FC = () => {
       </p>
       <button onClick={async () => await pingQuery.refetch()}>
         PING URSELF :D{" "}
+      </button>
+      --
+      <button onClick={async () => await refreshQuery.refetch()}>
+        Refresh{" "}
       </button>
     </>
   );
