@@ -9,6 +9,7 @@ import { SignUpRequest } from "~/libs/types";
 import { useSignUp } from "~/libs/queries";
 import Joi from "joi";
 import InputField from "~/components/input";
+import { Link } from "react-router-dom";
 
 const SignUp: React.FC = () => {
   const signUpQuery = useSignUp();
@@ -67,7 +68,12 @@ const SignUp: React.FC = () => {
             </button>
             <p className="form__notification">
               Already have an account?{" "}
-              <span className="form__notification__button">Sign In</span>
+              <Link
+                to="/account/sign-in"
+                className="form__notification__button"
+              >
+                Sign In
+              </Link>
             </p>
           </form>
         </FormProvider>

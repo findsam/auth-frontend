@@ -17,7 +17,6 @@ input::placeholder {
   font-weight: 500;
   color: var(--placeholder);
 }
-
 *,
 *::before,
 *::after {
@@ -31,7 +30,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
-
+form,
 img,
 picture,
 video,
@@ -40,7 +39,6 @@ svg {
   display: block;
   max-width: 100%;
 }
-
 input,
 button,
 textarea,
@@ -82,19 +80,20 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  max-width: max-content;
   font-size: 1.6rem;
 }
 .form {
+  width: 372px;
   max-width: 372px;
-  width: 100%;
-  display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 .form__row {
   display: grid;
 }
-
 .form__submit {
   margin-top: 2.2rem;
 }
@@ -127,24 +126,23 @@ label {
 }
 input,
 button {
+  display: block;
   outline: transparent;
   box-shadow: 0 1px 2px 0 rgba(64, 63, 71, 0.05);
 }
 input {
-  width: 100%;
-  outline: none;
   background: var(--background);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: var(--py) var(--px);
   outline: 2px solid transparent;
+  width: 100%;
+  display: block;
 }
-
 input:focus {
   outline: 2px solid var(--accent);
   border: 1px solid transparent;
 }
-
 button {
   outline: 2px solid var(--background);
   width: 100%;

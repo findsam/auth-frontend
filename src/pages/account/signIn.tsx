@@ -3,9 +3,9 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { SignInRequest } from "~/libs/types";
 import { useLogin } from "~/libs/queries";
 import Joi from "joi";
-import { renderErrors } from "~/libs/util";
 import { useAuth } from "~/libs/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import InputField from "~/components/input";
 
 const SignIn: React.FC = () => {
   const { mutateAsync, error } = useLogin();
@@ -37,20 +37,28 @@ const SignIn: React.FC = () => {
     <div className="container">
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(login)} className="form">
-          <span className="form__row">
-            <label>Email</label>
-            <input {...methods.register("email")} defaultValue="dev@dev.com" />
-          </span>
-          <span className="form__row">
-            <label>Password</label>
-            <input {...methods.register("password")} defaultValue="dev" />
-          </span>
-          <button type="submit" style={{ maxWidth: "max-content" }}>
-            Sign In
+          <InputField<SignInRequest>
+            name="email"
+            label="Email"
+            placeholder="Enter your email"
+          />
+          <InputField<SignInRequest>
+            name="password"
+            label="Password"
+            placeholder="Enter your password"
+          />{" "}
+          <button className="form__submit" type="submit">
+            Sign In{" "}
           </button>
+          <p className="form__notification">
+            Don't have an account?{" "}
+            <Link to="/account/sign-up" className="form__notification__button">
+              Sign Up
+            </Link>
+          </p>
         </form>
       </FormProvider>
-      {renderErrors<SignInRequest>(methods.formState.errors)}
+      {/* {renderErrors<SignInRequest>(methods.formState.errors)} */}
     </div>
   );
 };
