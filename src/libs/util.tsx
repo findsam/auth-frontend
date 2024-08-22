@@ -30,6 +30,7 @@ export const renderErrors = <T extends FieldValues>(items: FieldErrors<T>) => {
     const error = items[key];
     if (error) errors.push(error.message?.toString());
   }
+
   return (
     <ul>
       {errors.map((e) => (

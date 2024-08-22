@@ -6,9 +6,7 @@ import {
   SignUpRequest,
 } from "~/libs/types";
 import { axios, endpoints } from "~/libs/endpoint";
-import { getCookie } from "~/libs/util";
 import { AxiosError } from "axios";
-import { toast } from "sonner";
 
 export function useLogin() {
   return useMutation<
