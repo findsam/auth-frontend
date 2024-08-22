@@ -25,6 +25,7 @@ export interface Response<T> {
 
 export interface ResponseError {
   error: string;
+  message: string;
 }
 
 export interface SignInResponseWithToken extends Response<SignInResponse> {
