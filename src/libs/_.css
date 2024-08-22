@@ -92,6 +92,7 @@ body {
   gap: 0.8rem;
 }
 .form__row {
+  margin-top: 0.8rem;
   display: grid;
 }
 .form__submit {
@@ -111,7 +112,7 @@ body {
   font-weight: 700;
 }
 .form__row__error {
-  margin-top: 0.8rem;
+  margin-top: 0.4rem;
   font-size: 1.2rem;
   color: #c7433a;
   min-height: 1.2rem;
@@ -119,7 +120,6 @@ body {
   height: 100%;
 }
 label {
-  margin-bottom: 0.4rem;
   font-weight: 500;
   font-size: 1.6rem;
   color: var(--dark);
