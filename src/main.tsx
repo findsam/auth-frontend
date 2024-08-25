@@ -51,7 +51,7 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <Toaster />
+      <Toaster position="bottom-center" />
       <RouterProvider router={createBrowserRouter(routes)} />
     </AuthProvider>
   </QueryClientProvider>

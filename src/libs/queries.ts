@@ -33,9 +33,9 @@ export function useSignUp() {
   });
 }
 
-export function usePing() {
+export function useSelf() {
   return useQuery({
-    queryKey: ["ping"],
+    queryKey: ["self"],
     queryFn: async () =>
       await axios.get<Response<SignInResponse>>(endpoints.auth.self),
     retry: false,
