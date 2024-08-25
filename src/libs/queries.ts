@@ -1,5 +1,7 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import {
+  ConfirmNewPasswordRequest,
+  ResetPasswordRequest,
   Response,
   ResponseError,
   SignInRequest,
@@ -53,5 +55,19 @@ export function useRefresh() {
     enabled: false,
     retryOnMount: false,
     refetchOnWindowFocus: false,
+  });
+}
+
+export function useResetPassword() {
+  return useMutation({
+    mutationFn: async (values: ResetPasswordRequest) =>
+      await axios.put<Response<unknown>>(endpoints.auth.reset, values),
+  });
+}
+
+export function useConfirmNewPassword() {
+  return useMutation({
+    mutationFn: async (values: ConfirmNewPasswordRequest) =>
+      await axios.put<any>(endpoints.auth.confirm, values),
   });
 }

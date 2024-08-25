@@ -14,6 +14,8 @@ import Settings from "~/pages/account/settings";
 import { useAuth } from "~/libs/useAuth";
 import "~/libs/_.css";
 import { Toaster } from "sonner";
+import ResetPassword from "~/pages/account/resetPassword";
+import ConfirmPassword from "~/pages/account/confirmPassword";
 
 const ErrorBoundary = () => {
   let error = useRouteError();
@@ -34,6 +36,8 @@ const routes = [
       { path: "/", element: <Navigate to="account/sign-in" replace /> },
       { path: "account/sign-in", element: <SignIn /> },
       { path: "account/sign-up", element: <SignUp /> },
+      { path: "account/reset-password/", element: <ResetPassword /> },
+      { path: "account/reset-password/:token", element: <ConfirmPassword /> },
     ],
   },
   {

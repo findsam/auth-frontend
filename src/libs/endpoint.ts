@@ -12,6 +12,8 @@ export const endpoints = {
     user: (id: string) => `/users/user/${id}`,
     self: `/users/user`,
     refresh: "/users/user/refresh",
+    reset: "/users/user/reset-password",
+    confirm: "/users/user/confirm-reset-password",
   },
 };
 

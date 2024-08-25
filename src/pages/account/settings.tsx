@@ -1,4 +1,4 @@
-import { useRefresh, useSelf } from "~/libs/queries";
+import { useSelf } from "~/libs/queries";
 import { useAuth } from "~/libs/useAuth";
 
 const Settings: React.FC = () => {

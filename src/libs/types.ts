@@ -1,3 +1,12 @@
+export interface ResetPasswordRequest {
+  email: string;
+}
+
+export interface ConfirmNewPasswordRequest {
+  token: string;
+  password: string;
+}
+
 export interface SignInRequest {
   email: string;
   password: string;
