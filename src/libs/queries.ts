@@ -1,7 +1,9 @@
 import { useMutation, useQuery } from "react-query";
 import {
+  Response,
   ResponseError,
   SignInRequest,
+  SignInResponse,
   SignInResponseWithToken,
   SignUpRequest,
 } from "~/libs/types";
@@ -35,7 +37,7 @@ export function usePing() {
   return useQuery({
     queryKey: ["ping"],
     queryFn: async () =>
-      await axios.get<any>(endpoints.auth.user("66bff1853165b58880386aed")),
+      await axios.get<Response<SignInResponse>>(endpoints.auth.self),
     retry: false,
     enabled: false,
     retryOnMount: false,

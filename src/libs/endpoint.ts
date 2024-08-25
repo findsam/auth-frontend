@@ -10,6 +10,7 @@ export const endpoints = {
     signin: "/users/user/sign-in",
     signup: "/users/user/sign-up",
     user: (id: string) => `/users/user/${id}`,
+    self: `/users/user`,
     refresh: "/users/user/refresh",
   },
 };
