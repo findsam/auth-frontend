@@ -31,3 +31,23 @@ export interface ResponseError {
 export interface SignInResponseWithToken extends Response<SignInResponse> {
   token: string;
 }
+
+interface UserSecurity {
+  emailVerified: boolean;
+  hasTwoFactor: boolean;
+  twoFactorCode: number;
+}
+
+interface UserMeta {
+  createdAt: Date;
+}
+
+interface User {
+  id: string | number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password?: string;
+  security: UserSecurity;
+  meta: UserMeta;
+}
