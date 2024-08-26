@@ -19,7 +19,7 @@ export interface SignUpRequest {
   password: string;
 }
 
-export interface SignInResponse {
+export interface SignInResponse extends User {
   firstName: string;
   lastName: string;
   email: string;
@@ -51,7 +51,7 @@ interface UserMeta {
   createdAt: Date;
 }
 
-interface User {
+export interface User {
   id: string | number;
   firstName: string;
   lastName: string;

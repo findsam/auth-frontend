@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
-import { SignInResponse, SignInResponseWithToken } from "~/libs/types";
+import { SignInResponse, SignInResponseWithToken, User } from "~/libs/types";
 import { bakeLocalStorage, getCookie, readLocalStorage } from "~/libs/util";
 
 export type Auth = Partial<{
-  user: SignInResponse | null;
+  user: User | null;
   handleUser: (data: SignInResponseWithToken) => void;
   isSignedIn: boolean;
 }>;

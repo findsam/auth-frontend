@@ -5,9 +5,9 @@ import {
   Response,
   ResponseError,
   SignInRequest,
-  SignInResponse,
   SignInResponseWithToken,
   SignUpRequest,
+  User,
 } from "~/libs/types";
 import { axios, endpoints } from "~/libs/endpoint";
 import { AxiosError } from "axios";
@@ -38,8 +38,7 @@ export function useSignUp() {
 export function useSelf() {
   return useQuery({
     queryKey: ["self"],
-    queryFn: async () =>
-      await axios.get<Response<SignInResponse>>(endpoints.auth.self),
+    queryFn: async () => await axios.get<Response<User>>(endpoints.auth.self),
     retry: false,
     enabled: false,
     retryOnMount: false,

@@ -2,7 +2,11 @@ import _axios, { AxiosError, AxiosResponse } from "axios";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "sonner";
 import { ResponseError, Response } from "~/libs/types";
-import { bakeLocalStorage, readLocalStorage } from "~/libs/util";
+import {
+  bakeLocalStorage,
+  deleteLocalStorage,
+  readLocalStorage,
+} from "~/libs/util";
 
 export const endpoints = {
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080",
@@ -53,15 +57,24 @@ axios.interceptors.request.use(
         if (hasExpired) {
           /* we MUST use the default axios instance for this one request 
           otherwise we can trigger and infinite loop due to interceptors. */
-          const response = await _axios.get<{ token: string }>(
-            endpoints.baseURL + endpoints.auth.refresh,
-            {
-              withCredentials: true,
-            }
-          );
-          request.headers["Authorization"] = `Bearer ${response.data.token}`;
-          bakeLocalStorage("authorization", response.data.token);
-          return request;
+          try {
+            const response = await _axios.get<{ token: string }>(
+              endpoints.baseURL + endpoints.auth.refresh,
+              {
+                withCredentials: true,
+              }
+            );
+            request.headers["Authorization"] = `Bearer ${response.data.token}`;
+            bakeLocalStorage("authorization", response.data.token);
+            return request;
+          } catch (err) {
+            /* If in case the refresh has expired, we have to delete the auth/user from 
+            localstorage to ensure we don't trigger the refresh endpoint on each
+            request. */
+            deleteLocalStorage("authorization");
+            deleteLocalStorage("user");
+            throw new Error("Refresh token invalid.");
+          }
         }
       }
     }
