@@ -43,6 +43,7 @@ const SignIn: React.FC = () => {
             placeholder="Enter your email"
           />
           <InputField<SignInRequest>
+            type="password"
             name="password"
             label="Password"
             placeholder="Enter your password"

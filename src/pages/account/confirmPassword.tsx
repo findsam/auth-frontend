@@ -42,6 +42,7 @@ const ConfirmPassword: React.FC = () => {
           <InputField<ConfirmNewPasswordRequest>
             name="password"
             label="New Password"
+            type="password"
             placeholder="Create a new password"
           />
           <button className="form__submit" type="submit">

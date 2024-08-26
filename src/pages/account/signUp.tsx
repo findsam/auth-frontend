@@ -60,6 +60,7 @@ const SignUp: React.FC = () => {
             />
             <InputField<SignUpRequest>
               name="password"
+              type="password"
               label="Password"
               placeholder="Create a password"
             />
