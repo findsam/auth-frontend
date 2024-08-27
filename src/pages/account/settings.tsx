@@ -19,18 +19,7 @@ const Settings: React.FC = () => {
         Welcome to your account, {auth.user?.firstName} {auth.user?.lastName}.
         <br />
         <ul>
-          <li>
-            Account created:{" "}
-            {new Date(auth?.user?.meta?.createdAt).toLocaleString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
-              second: "numeric",
-              hour12: true,
-            })}
-          </li>
+          <li>Account created: {renderTime(auth?.user?.meta?.createdAt)}</li>
           <li>Email: {auth?.user?.email}</li>
           <li>
             Verified?:{" "}
@@ -40,6 +29,7 @@ const Settings: React.FC = () => {
             2FA Enabled?:{" "}
             {auth?.user?.security?.hasTwoFactor === false ? "No" : "Yes"}
           </li>
+          <li>Last updated: {renderTime(auth?.user?.meta?.lastUpdate)}</li>
         </ul>
         <br />
         <button onClick={async () => await refetch()}>
@@ -51,3 +41,14 @@ const Settings: React.FC = () => {
 };
 
 export default Settings;
+
+const renderTime = (timestamp: Date) =>
+  new Date(timestamp).toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true,
+  });

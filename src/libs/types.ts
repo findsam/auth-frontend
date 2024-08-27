@@ -49,6 +49,7 @@ interface UserSecurity {
 
 interface UserMeta {
   createdAt: Date;
+  lastUpdate: Date;
 }
 
 export interface User {

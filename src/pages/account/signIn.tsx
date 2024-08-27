@@ -47,7 +47,18 @@ const SignIn: React.FC = () => {
             name="password"
             label="Password"
             placeholder="Enter your password"
-          />{" "}
+          />
+          <p
+            className="form__notification"
+            style={{ marginTop: "-1rem", marginLeft: "0.2rem" }}
+          >
+            <Link
+              to="/account/reset-password"
+              className="form__notification__button"
+            >
+              Forgot password?
+            </Link>
+          </p>
           <button className="form__submit" type="submit">
             Sign In{" "}
           </button>
