@@ -67,6 +67,13 @@ export function useResetPassword() {
 export function useConfirmNewPassword() {
   return useMutation({
     mutationFn: async (values: ConfirmNewPasswordRequest) =>
-      await axios.put<any>(endpoints.auth.confirm, values),
+      await axios.put(endpoints.auth.confirm, values),
+  });
+}
+
+export function useArchive() {
+  return useMutation({
+    mutationKey: ["delete"],
+    mutationFn: async () => await axios.delete(endpoints.auth.archive),
   });
 }

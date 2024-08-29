@@ -1,9 +1,10 @@
-import { useSelf } from "~/libs/queries";
+import { useArchive, useSelf } from "~/libs/queries";
 import { useAuth } from "~/libs/useAuth";
 
 const Settings: React.FC = () => {
   const auth = useAuth();
   const { refetch } = useSelf();
+  const { mutateAsync } = useArchive();
   if (!auth?.user) return;
 
   return (
@@ -22,18 +23,23 @@ const Settings: React.FC = () => {
           <li>Account created: {renderTime(auth?.user?.meta?.createdAt)}</li>
           <li>Email: {auth?.user?.email}</li>
           <li>
-            Verified?:{" "}
-            {auth?.user?.security?.emailVerified === false ? "No" : "Yes"}
+            Verified?: {auth?.user?.security?.emailVerified ? "Yes" : "No"}
           </li>
           <li>
-            2FA Enabled?:{" "}
-            {auth?.user?.security?.hasTwoFactor === false ? "No" : "Yes"}
+            2FA Enabled?: {auth?.user?.security?.hasTwoFactor ? "Yes" : "No"}
           </li>
           <li>Last updated: {renderTime(auth?.user?.meta?.lastUpdate)}</li>
+          <li>Archived: {auth?.user?.meta?.isArchived ? "Yes" : "No"}</li>
         </ul>
         <br />
         <button onClick={async () => await refetch()}>
           Check Token Health
+        </button>
+        <button
+          onClick={async () => await mutateAsync()}
+          style={{ background: "#e35462", borderColor: "#db1629" }}
+        >
+          Archive Account{" "}
         </button>
       </div>
     </>

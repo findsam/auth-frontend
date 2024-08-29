@@ -50,6 +50,7 @@ interface UserSecurity {
 interface UserMeta {
   createdAt: Date;
   lastUpdate: Date;
+  isArchived: boolean;
 }
 
 export interface User {

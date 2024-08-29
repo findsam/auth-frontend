@@ -18,6 +18,7 @@ export const endpoints = {
     refresh: "/users/user/refresh",
     reset: "/users/user/reset-password",
     confirm: "/users/user/confirm-reset-password",
+    archive: "/users/user",
   },
 };
 

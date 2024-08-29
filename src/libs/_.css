@@ -164,6 +164,7 @@ button {
   transition: all 124ms;
   transition-timing-function: linear;
 }
+
 button:hover {
   cursor: pointer;
   outline: 2px solid var(--accent);
