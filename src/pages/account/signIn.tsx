@@ -50,12 +50,13 @@ const SignIn: React.FC = () => {
           />
           <p
             className="form__notification"
-            style={{ marginTop: "-1rem", marginLeft: "0.2rem" }}
+            style={{
+              marginTop: "-2.2rem",
+              marginLeft: "auto",
+              marginRight: "0",
+            }}
           >
-            <Link
-              to="/account/reset-password"
-              className="form__notification__button"
-            >
+            <Link to="/account/reset-password" className="form__pw">
               Forgot password?
             </Link>
           </p>

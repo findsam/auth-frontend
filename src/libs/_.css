@@ -87,6 +87,7 @@ body {
 }
 .form {
   width: 372px;
+  display: flex;
   max-width: 372px;
   flex-direction: column;
   gap: 0.8rem;
@@ -97,6 +98,14 @@ body {
 }
 .form__submit {
   margin-top: 2.2rem;
+}
+.form__pw {
+  margin-top: 0.4rem;
+  font-size: 1.2rem;
+  color: var(--dark);
+  min-height: 1.2rem;
+  max-height: 1.2rem;
+  height: 100%;
 }
 .form__notification {
   font-size: 1.3rem;
