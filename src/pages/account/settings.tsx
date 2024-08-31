@@ -1,8 +1,11 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useArchive, useSelf } from "~/libs/queries";
 import { useAuth } from "~/libs/useAuth";
 
 const Settings: React.FC = () => {
   const auth = useAuth();
+  const navigate = useNavigate();
   const { refetch } = useSelf();
   const { mutateAsync } = useArchive();
   if (!auth?.user) return;
@@ -32,11 +35,18 @@ const Settings: React.FC = () => {
           <li>Archived: {auth?.user?.meta?.isArchived ? "Yes" : "No"}</li>
         </ul>
         <br />
-        <button onClick={async () => await refetch()}>
-          Check Token Health
+        <button>Update User</button>
+        <button
+          onClick={async () => await refetch()}
+          style={{ background: "#42f584", borderColor: "#1aad50" }}
+        >
+          Refresh User (Development)
         </button>
         <button
-          onClick={async () => await mutateAsync()}
+          onClick={async () => {
+            await mutateAsync();
+            navigate("/account/sign-in");
+          }}
           style={{ background: "#e35462", borderColor: "#db1629" }}
         >
           Archive Account{" "}

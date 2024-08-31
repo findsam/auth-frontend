@@ -1,4 +1,5 @@
 import { FieldErrors, FieldValues } from "react-hook-form";
+import { redirect, useNavigate } from "react-router-dom";
 
 const isValidJSON = (string: string) => {
   return /^[\],:{}\s]*$/.test(
@@ -67,4 +68,9 @@ export const readLocalStorage = <Data,>(
   return typeof value === "string" && isValidJSON(value)
     ? (JSON.parse(value) as Data)
     : null;
+};
+
+export const SignOut = () => {
+  deleteLocalStorage("authorization");
+  deleteLocalStorage("user");
 };

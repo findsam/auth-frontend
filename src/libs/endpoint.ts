@@ -6,6 +6,7 @@ import {
   bakeLocalStorage,
   deleteLocalStorage,
   readLocalStorage,
+  SignOut,
 } from "~/libs/util";
 
 export const endpoints = {
@@ -30,7 +31,9 @@ export const axios = _axios.create({
 //Generic toast responses for success and failure instances.
 axios.interceptors.response.use(
   (response: AxiosResponse<Response<unknown>, unknown>) => {
-    toast.success(response.data.message ?? response.statusText);
+    if (typeof response.data.message === "string") {
+      toast.success(response.data.message ?? response.statusText);
+    }
     return Promise.resolve(response);
   },
   (error: AxiosError<ResponseError>) => {
@@ -72,8 +75,7 @@ axios.interceptors.request.use(
             /* If in case the refresh has expired, we have to delete the auth/user from 
             localstorage to ensure we don't trigger the refresh endpoint on each
             request. */
-            deleteLocalStorage("authorization");
-            deleteLocalStorage("user");
+            SignOut();
             throw new Error("Refresh token invalid.");
           }
         }
