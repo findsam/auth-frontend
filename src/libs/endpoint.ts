@@ -12,14 +12,12 @@ import {
 export const endpoints = {
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080",
   auth: {
+    self: `/users/user`,
     signin: "/users/user/sign-in",
     signup: "/users/user/sign-up",
-    user: (id: string) => `/users/user/${id}`,
-    self: `/users/user`,
     refresh: "/users/user/refresh",
     reset: "/users/user/reset-password",
     confirm: "/users/user/confirm-reset-password",
-    archive: "/users/user",
   },
 };
 

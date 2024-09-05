@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { SignInResponse, SignInResponseWithToken, User } from "~/libs/types";
-import { bakeLocalStorage, getCookie, readLocalStorage } from "~/libs/util";
+import { bakeLocalStorage, readLocalStorage } from "~/libs/util";
 
 export type Auth = Partial<{
   user: User | null;

@@ -12,7 +12,7 @@ import AuthProvider from "~/libs/authCtx";
 import SignUp from "~/pages/account/signUp";
 import Settings from "~/pages/account/settings";
 import { useAuth } from "~/libs/useAuth";
-import "~/libs/_.css";
+import "~/libs/global.css";
 import { Toaster } from "sonner";
 import ResetPassword from "~/pages/account/resetPassword";
 import ConfirmPassword from "~/pages/account/confirmPassword";

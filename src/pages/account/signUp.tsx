@@ -38,47 +38,50 @@ const SignUp: React.FC = () => {
 
   return (
     <>
-      <div className="container">
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(signUp)} className="form">
-            <span style={{ display: "flex", gap: "1.3rem" }}>
-              <InputField<SignUpRequest>
-                name="firstName"
-                label="First Name"
-                placeholder="Your first name"
-              />
-              <InputField<SignUpRequest>
-                name="lastName"
-                label="Last Name"
-                placeholder="Your last name"
-              />
-            </span>
-            <InputField<SignUpRequest>
-              name="email"
-              label="Email"
-              placeholder="Enter your email"
-            />
-            <InputField<SignUpRequest>
-              name="password"
-              type="password"
-              label="Password"
-              placeholder="Create a password"
-            />
-            <button className="form__submit" type="submit">
-              Sign Up{" "}
-            </button>
-            <p className="form__notification">
-              Already have an account?{" "}
-              <Link
-                to="/account/sign-in"
-                className="form__notification__button"
-              >
-                Sign In
-              </Link>
-            </p>
-          </form>
-        </FormProvider>
-        {/* {renderErrors<SignUpRequest>(methods.formState.errors)} */}
+      <div className="grid items-center justify-center h-full w-full">
+        <div className="border border-green-400 rounded-3xl overflow-hidden p-4">
+          <div className="border border-green-400 rounded-2xl overflow-hidden p-4">
+            <FormProvider {...methods}>
+              <form onSubmit={methods.handleSubmit(signUp)} className="form">
+                <span style={{ display: "flex", gap: "1.3rem" }}>
+                  <InputField<SignUpRequest>
+                    name="firstName"
+                    label="First Name"
+                    placeholder="Your first name"
+                  />
+                  <InputField<SignUpRequest>
+                    name="lastName"
+                    label="Last Name"
+                    placeholder="Your last name"
+                  />
+                </span>
+                <InputField<SignUpRequest>
+                  name="email"
+                  label="Email"
+                  placeholder="Enter your email"
+                />
+                <InputField<SignUpRequest>
+                  name="password"
+                  type="password"
+                  label="Password"
+                  placeholder="Create a password"
+                />
+                <button className="form__submit" type="submit">
+                  Sign Up{" "}
+                </button>
+                <p className="form__notification">
+                  Already have an account?{" "}
+                  <Link
+                    to="/account/sign-in"
+                    className="form__notification__button"
+                  >
+                    Sign In
+                  </Link>
+                </p>
+              </form>
+            </FormProvider>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import {
   ConfirmNewPasswordRequest,
   ResetPasswordRequest,
@@ -7,6 +7,7 @@ import {
   SignInRequest,
   SignInResponseWithToken,
   SignUpRequest,
+  UpdateUser,
   User,
 } from "~/libs/types";
 import { axios, endpoints } from "~/libs/endpoint";
@@ -75,9 +76,20 @@ export function useConfirmNewPassword() {
 export function useArchive() {
   return useMutation({
     mutationKey: ["delete"],
-    mutationFn: async () => await axios.delete(endpoints.auth.archive),
+    mutationFn: async () => await axios.delete(endpoints.auth.self),
     onSuccess: (_) => {
       SignOut();
+    },
+  });
+}
+
+export function useUpdateUser() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (values: UpdateUser) =>
+      axios.put<Response<User>>(endpoints.auth.self, values),
+    onSettled: async (_, __) => {
+      await queryClient.invalidateQueries({ queryKey: ["self"] });
     },
   });
 }

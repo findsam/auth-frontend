@@ -1,14 +1,23 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useArchive, useSelf } from "~/libs/queries";
+import { useArchive, useSelf, useUpdateUser } from "~/libs/queries";
 import { useAuth } from "~/libs/useAuth";
 
 const Settings: React.FC = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const { refetch } = useSelf();
-  const { mutateAsync } = useArchive();
+  const { mutateAsync: archiveUser } = useArchive();
+  const { mutateAsync: updateUser } = useUpdateUser();
+
   if (!auth?.user) return;
+
+  const FIRST_NAMES = ["John", "Tyler", "Simon"];
+  const LAST_NAMES = ["McGregor", "Giovanni", "Cian"];
+
+  const random = (arr: string[]) => {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+  };
 
   return (
     <>
@@ -35,7 +44,18 @@ const Settings: React.FC = () => {
           <li>Archived: {auth?.user?.meta?.isArchived ? "Yes" : "No"}</li>
         </ul>
         <br />
-        <button>Update User</button>
+        <button
+          onClick={async () => {
+            const name = random(FIRST_NAMES);
+            await updateUser({
+              firstName: name,
+              lastName: random(LAST_NAMES),
+              email: name + "@dev.dev",
+            });
+          }}
+        >
+          Update User
+        </button>
         <button
           onClick={async () => await refetch()}
           style={{ background: "#42f584", borderColor: "#1aad50" }}
@@ -44,7 +64,7 @@ const Settings: React.FC = () => {
         </button>
         <button
           onClick={async () => {
-            await mutateAsync();
+            await archiveUser();
             navigate("/account/sign-in");
           }}
           style={{ background: "#e35462", borderColor: "#db1629" }}

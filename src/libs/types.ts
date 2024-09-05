@@ -62,3 +62,9 @@ export interface User {
   security: UserSecurity;
   meta: UserMeta;
 }
+
+export interface UpdateUser {
+  firstName: string;
+  lastName: string;
+  email: string;
+}

@@ -1,5 +1,5 @@
 import { FieldErrors, FieldValues } from "react-hook-form";
-import { redirect, useNavigate } from "react-router-dom";
+import { User } from "./types";
 
 const isValidJSON = (string: string) => {
   return /^[\],:{}\s]*$/.test(
