@@ -40,11 +40,11 @@ const SignUp: React.FC = () => {
   return (
     <>
       <div className="flex items-center justify-center h-full w-full">
-        <div className="border border-neutral-200 rounded-3xl overflow-hidden p-1 max-w-lg w-full h-max shadow-xl flex">
+        <div className="border border-neutral-200 rounded-3xl overflow-hidden p-1 max-w-lg w-full h-max shadow-xl flex ">
           <div
-            className="border border-[rgba(77,_0,_255,_0.14)] rounded-[1.25rem] overflow-hidden p-5 h-full w-full
+            className="border border-[rgba(37,_99,_235,_0.1)] rounded-[1.25rem] overflow-hidden p-4 h-full w-full
             relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:-z-50
-            after:bg-[linear-gradient(180deg,_rgba(77,_0,_255,_0.08),_rgba(77,_0,_255,_0.015)_12%,_#fff)]"
+            after:bg-[linear-gradient(180deg,_rgba(37,_99,_235,_0.1),_rgba(37,_99,_235,_0.02)_12%,_#fff)]"
           >
             <div className="w-full max-w-md py-6">
               <div className="grid gap-2">
@@ -57,7 +57,7 @@ const SignUp: React.FC = () => {
 
                 <button
                   className="border border-neutral-300 rounded-lg px-4 py-2 mt-4 font-semibold text-stone-900 bg-white
-                  text-sm leading-none tracking-tight flex items-center text-center justify-center gap-2 h-9.5 hover:cursor-not-allowed"
+                  text-sm leading-none tracking-tight flex items-center text-center justify-center gap-2 h-9.5 "
                 >
                   <FcGoogle size={24} />
                   Sign-up with Google
@@ -103,10 +103,13 @@ const SignUp: React.FC = () => {
 
                 <div className="border-t border-bg-neutral-200 -mx-5 px-5 flex gap-3.5">
                   <button className="border border-neutral-300 rounded-lg px-4 py-2 mt-4 font-semibold text-stone-900 bg-white text-sm leading-none tracking-tight flex items-center text-center justify-center gap-2 h-9.5 hover:cursor-not-allowed">
-                    Need help?
+                    Cancel
                   </button>
 
-                  <button className="ml-auto border border-neutral-300 rounded-lg px-4 py-2 mt-4 font-semibold text-stone-900 bg-white text-sm leading-none tracking-tight flex items-center text-center justify-center gap-2 h-9.5 hover:cursor-not-allowed">
+                  <button
+                    className="ml-auto rounded-lg px-4 py-2 mt-4 font-medium text-sm leading-none tracking-tight flex items-center text-center justify-center gap-2 h-9.5  text-slate-50 bg-blue-950"
+                    type="submit"
+                  >
                     Create account
                   </button>
                 </div>

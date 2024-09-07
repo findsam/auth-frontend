@@ -27,7 +27,7 @@ const InputField = <T extends FieldValues>(props: InputFieldProps<T>) => {
         type={props.type || "text"}
         {...methods.register(props.name)}
         {...props}
-        className="h-9.5 border border-neutral-300 rounded-lg px-2 flex items-center gap-2 w-full font-medium text-stone-500 text-xs placeholder:font-medium placeholder:text-stone-500 placeholder:text-xs hover:outline-purple-700 focus:outline-purple-700 outline-0.5"
+        className="h-9.5 border border-neutral-300 rounded-lg px-2 flex items-center gap-2 w-full font-medium text-stone-500 text-xs placeholder:font-medium placeholder:text-stone-500 placeholder:text-xs hover:outline-blue-950 focus:outline-blue-950 outline-0.5"
       />
       <p className="form__row__error">
         {methods.formState.errors[props.name]?.message as string}
