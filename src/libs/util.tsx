@@ -74,3 +74,24 @@ export const SignOut = () => {
   deleteLocalStorage("authorization");
   deleteLocalStorage("user");
 };
+
+type Condition = (password: string) => boolean;
+export const validatePasswordStrength = (password: string = ""): number => {
+  const conditions: Condition[] = [
+    (pwd) => pwd.length > 8, // Password length greater than 8
+    (pwd) => /[A-Z]/.test(pwd), // Contains at least one uppercase letter
+    (pwd) => /[!@#$%^&*(),.?":{}|<>]/.test(pwd), // Contains at least one special character
+    (pwd) => !/(.)\1\1/.test(pwd), // No character repeats three times consecutively
+  ];
+
+  // Count the number of conditions met
+  let conditionsMet = 0;
+
+  for (const condition of conditions) {
+    if (condition(password)) {
+      conditionsMet++;
+    }
+  }
+
+  return conditionsMet;
+};

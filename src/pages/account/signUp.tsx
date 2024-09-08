@@ -10,7 +10,8 @@ import { useSignUp } from "~/libs/queries";
 import Joi from "joi";
 import InputField from "~/components/input";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { RxLockClosed } from "react-icons/rx";
+import PasswordStrengthIndicator from "~/components/strength";
 
 const SignUp: React.FC = () => {
   const signUpQuery = useSignUp();
@@ -40,7 +41,7 @@ const SignUp: React.FC = () => {
   return (
     <>
       <div className="flex items-center justify-center h-full w-full">
-        <div className="border border-neutral-200 rounded-3xl overflow-hidden p-1 max-w-lg w-full h-max shadow-xl flex ">
+        <div className="border border-neutral-200 rounded-3xl overflow-hidden p-1 max-w-lg w-full h-max shadow-xl flex">
           <div
             className="border border-[rgba(37,_99,_235,_0.1)] rounded-[1.25rem] overflow-hidden p-4 h-full w-full
             relative after:absolute after:top-0 after:left-0 after:w-full after:h-full after:-z-50
@@ -78,32 +79,32 @@ const SignUp: React.FC = () => {
                     name="firstName"
                     label="First Name"
                     placeholder="Enter your first name"
-                    required
                   />
                   <InputField<SignUpRequest>
                     name="lastName"
                     label="Last Name"
                     placeholder="Enter your last name"
-                    required
                   />
                 </span>
                 <InputField<SignUpRequest>
                   name="email"
-                  required
                   label="Email"
                   placeholder="Valid email address"
                 />
                 <InputField<SignUpRequest>
                   name="password"
                   type="password"
-                  required
                   label="Password"
                   placeholder="Create a password"
                 />
 
-                <div className="border-t border-bg-neutral-200 -mx-5 px-5 flex gap-3.5">
+                <PasswordStrengthIndicator
+                  password={methods.watch("password")}
+                />
+                <div className="border-t border-bg-neutral-200 -mx-5 px-5 flex gap-3.5 mt-4">
                   <button className="border border-neutral-300 rounded-lg px-4 py-2 mt-4 font-semibold text-stone-900 bg-white text-sm leading-none tracking-tight flex items-center text-center justify-center gap-2 h-9.5 hover:cursor-not-allowed">
-                    Cancel
+                    <RxLockClosed size={16} />
+                    Forgot Password?
                   </button>
 
                   <button
