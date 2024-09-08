@@ -13,4 +13,4 @@ auth-frontend 0 styling boilerplate
 - [Joi](https://github.com/hapijs/joi)
 - [React Hook Form](https://react-hook-form.com/)
 
-![img](https://i.imgur.com/9dHQB7J.png)
+![img](https://i.imgur.com/ZsWPhTh.png)
